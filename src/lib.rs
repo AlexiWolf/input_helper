@@ -5,6 +5,33 @@ use event_feed::*;
 
 pub type InputFeed = Feed<InputEvent>;
 pub type InputReader = Reader<InputEvent>;
+pub type InputName = &'static str;
+
+#[derive(Debug, Clone, Copy)]
+pub enum InputEvent {
+    KeyDown(InputName),
+    KeyUp(InputName),
+    // ext. ext.
+}
+
+pub enum InputState {
+    Key(ButtonState),
+}
+
+
+pub enum ButtonState {
+    Up,
+    Down,
+}
+
+impl ButtonState {
+    pub fn is_pressed(&self) -> bool {
+        match self {
+            ButtonState::Up => false,
+            ButtonState::Down => true,
+        }
+    }
+}
 
 pub struct InputHelper {
     events: Arc<Mutex<Feed<InputEvent>>>,
@@ -24,33 +51,6 @@ impl InputHelper {
     pub fn send(&self, input: InputEvent) {
         self.events.lock().expect("failed to unlock the event feed").send(input);
     }
-}
-
-pub type InputName = &'static str;
-
-#[derive(Debug, Clone, Copy)]
-pub enum InputEvent {
-    KeyDown(InputName),
-    KeyUp(InputName),
-    // ext. ext.
-}
-
-pub enum ButtonState {
-    Up,
-    Down,
-}
-
-impl ButtonState {
-    pub fn is_pressed(&self) -> bool {
-        match self {
-            ButtonState::Up => false,
-            ButtonState::Down => true,
-        }
-    }
-}
-
-pub enum InputState {
-    Key(ButtonState),
 }
 
 
