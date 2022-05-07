@@ -84,7 +84,6 @@ impl InputMap {
         match self.map.get(input) {
             Some(input) => match input {
                 InputState::Key(button) => button.is_pressed(),
-                _ => false,
             }
             None => false,
         }
