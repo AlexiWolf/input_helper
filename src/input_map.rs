@@ -2,6 +2,28 @@ use std::collections::HashMap;
 
 use crate::*;
 
+/// Represents the current state of an input for the [InputMap].
+#[derive(Debug, Clone, Copy)]
+pub enum InputState {
+    Key(ButtonState),
+}
+
+/// Provides state for a button, indicating if it is currently up or down.
+#[derive(Debug, Clone, Copy)]
+pub enum ButtonState {
+    Up,
+    Down,
+}
+
+impl ButtonState {
+    pub fn is_pressed(&self) -> bool {
+        match self {
+            ButtonState::Up => false,
+            ButtonState::Down => true,
+        }
+    }
+}
+
 /// Provide a map for querying the current input state.
 pub struct InputMap {
     map: HashMap<InputName, InputState>,

@@ -90,28 +90,6 @@ pub enum InputEvent {
     // ext. ext.
 }
 
-/// Represents the current state of an input for the [InputMap].
-#[derive(Debug, Clone, Copy)]
-pub enum InputState {
-    Key(ButtonState),
-}
-
-/// Provides state for a button, indicating if it is currently up or down.
-#[derive(Debug, Clone, Copy)]
-pub enum ButtonState {
-    Up,
-    Down,
-}
-
-impl ButtonState {
-    pub fn is_pressed(&self) -> bool {
-        match self {
-            ButtonState::Up => false,
-            ButtonState::Down => true,
-        }
-    }
-}
-
 /// Provides a generic input event queue.
 pub struct InputHelper {
     events: Arc<Mutex<Feed<InputEvent>>>,
