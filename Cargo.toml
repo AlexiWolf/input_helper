@@ -1,7 +1,13 @@
 [package]
 name = "input_helper"
+description = "Generic types and tools for unifying input libraries."
 version = "0.1.0"
+authors = ["AlexiWolf <alexiwolf@pm.me>"]
 edition = "2021"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/AlexiWolf/input_helper"
+homepage = "https://github.com/AlexiWolf/input_helper"
+
 
 [features]
 default = []
