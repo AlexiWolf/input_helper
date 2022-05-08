@@ -64,9 +64,11 @@
 //! input_map.update(); // Read queued events and update the input state.
 //! input_map.is_pressed("a"); // Query the input state.
 //! ```
-//!
 
-use std::collections::HashMap;
+mod input_map;
+
+pub use input_map::*;
+
 use std::sync::{Arc, Mutex};
 
 use event_feed::*;
@@ -142,51 +144,6 @@ impl InputHelper {
 impl Default for InputHelper {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-/// Provide a map for querying the current input state.
-pub struct InputMap {
-    map: HashMap<InputName, InputState>,
-    input_reader: Arc<Reader<InputEvent>>,
-}
-
-impl InputMap {
-    pub fn new(input_helper: &InputHelper) -> Self {
-        Self {
-            map: HashMap::new(),
-            input_reader: input_helper.reader(),
-        }
-    }
-
-    /// Process all queued [InputEvent]s and update the map.
-    ///
-    /// This method should be ran before inspecting the input state.  If you're
-    /// writing a framework using Input Helper, then you should probably run this before
-    /// running the user's `update` code.
-    pub fn update(&mut self) {
-        for event in self.input_reader.read() {
-            match event {
-                InputEvent::KeyDown(key) => {
-                    self.map.insert(key, InputState::Key(ButtonState::Down));
-                }
-                InputEvent::KeyUp(key) => {
-                    self.map.insert(key, InputState::Key(ButtonState::Up));
-                }
-            }
-        }
-    }
-
-    /// Query the state of a button, and return `true` if the button is pressed.
-    ///
-    /// If the requested input is not a button, then `false` will be returned.
-    pub fn is_pressed(&self, input: InputName) -> bool {
-        match self.map.get(input) {
-            Some(input) => match input {
-                InputState::Key(button) => button.is_pressed(),
-            },
-            None => false,
-        }
     }
 }
 
