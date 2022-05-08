@@ -14,11 +14,12 @@ pub enum InputEvent {
     // ext. ext.
 }
 
+#[derive(Debug, Clone, Copy)]
 pub enum InputState {
     Key(ButtonState),
 }
 
-
+#[derive(Debug, Clone, Copy)]
 pub enum ButtonState {
     Up,
     Down,
