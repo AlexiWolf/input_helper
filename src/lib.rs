@@ -53,6 +53,11 @@ impl InputHelper {
     }
 }
 
+impl Default for InputHelper {
+    fn default() -> Self {
+        Self::new()
+    }
+}
 
 pub struct InputMap {
     map: HashMap<InputName, InputState>,
