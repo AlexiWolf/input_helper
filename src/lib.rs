@@ -161,18 +161,4 @@ mod input_helper_tests {
 
         assert_eq!(input_reader.read().count(), 2);
     }
-
-    #[test]
-    fn should_update_input_map() {
-        let input_helper = InputHelper::new();
-        let mut input_map = InputMap::new(&input_helper);
-
-        input_helper.send(InputEvent::KeyDown("a"));
-        input_map.update();
-        assert!(input_map.is_pressed("a"));
-
-        input_helper.send(InputEvent::KeyUp("a"));
-        input_map.update();
-        assert!(!input_map.is_pressed("a"));
-    }
 }
