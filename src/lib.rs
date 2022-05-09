@@ -17,7 +17,7 @@
 //! Library-specific input events can be converted to [InputEvent]s, and sent through
 //! Input Helper using [InputHelper::send()].  Then your application code can be written
 //! against Input Helper.  If you ever need to switch your input system, then there's no
-//! need to rewrite your business logic.  This also allows you to process all input code
+//! need to rewrite your business logic.  This also allows you to process all input 
 //! in a single place regardless of its source.
 //!
 //! Input Helper will provide default integration functions for common frameworks such as
@@ -88,28 +88,6 @@ pub enum InputEvent {
     KeyDown(InputName),
     KeyUp(InputName),
     // ext. ext.
-}
-
-/// Represents the current state of an input for the [InputMap].
-#[derive(Debug, Clone, Copy)]
-pub enum InputState {
-    Key(ButtonState),
-}
-
-/// Provides state for a button, indicating if it is currently up or down.
-#[derive(Debug, Clone, Copy)]
-pub enum ButtonState {
-    Up,
-    Down,
-}
-
-impl ButtonState {
-    pub fn is_pressed(&self) -> bool {
-        match self {
-            ButtonState::Up => false,
-            ButtonState::Down => true,
-        }
-    }
 }
 
 /// Provides a generic input event queue.
