@@ -14,7 +14,7 @@ your input code. This can either couple your project to specific framework(s), o
 code.  In the case of using multiple input libraries, such as pairing Winit and Gilrs you must handle each framework 
 separately.
 
-#### The Solution
+### The Solution
 
 Library-specific input events can be converted to `InputEvents`, and sent through Input Helper using 
 `InputHelper::send()`.  Then your application code can be written against Input Helper.  If you ever need to switch 
