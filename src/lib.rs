@@ -17,7 +17,7 @@
 //! Library-specific input events can be converted to [InputEvent]s, and sent through
 //! Input Helper using [InputHelper::send()].  Then your application code can be written
 //! against Input Helper.  If you ever need to switch your input system, then there's no
-//! need to rewrite your business logic.  This also allows you to process all input 
+//! need to rewrite your business logic.  This also allows you to process all input
 //! in a single place regardless of its source.
 //!
 //! Input Helper will provide default integration functions for common frameworks such as
