@@ -4,6 +4,10 @@ Generic types and tools for unifying input libraries.
 
 The main job of Input Helper is to provide a single, unified way to process input from any input framework.
 
+### Project Status
+
+**NOTE:** Input Helper is still in the planning / testing stages.  It is not ready for use at the moment.
+
 ### The Problem
 
 Most libraries that take user input do so in a library-specific way.  In order to use the library, you must write 
@@ -23,10 +27,6 @@ in a single place regardless of its source.
 
 Input Helper will provide default integration functions for common frameworks such as Winit, SDL, and Gilrs.  
 
-### Project Status
-
-Input Helper is still in early alpha, so expect bugs, missing features, changing APIs, and other spooky stuff until
-release 1.0.
 
 ## Contribution
 
