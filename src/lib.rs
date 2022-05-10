@@ -17,7 +17,7 @@
 //! Library-specific input events can be converted to [InputEvent]s, and sent through
 //! Input Helper using [InputHelper::send()].  Then your application code can be written
 //! against Input Helper.  If you ever need to switch your input system, then there's no
-//! need to rewrite your business logic.  This also allows you to process all input code
+//! need to rewrite your business logic.  This also allows you to process all input
 //! in a single place regardless of its source.
 //!
 //! Input Helper will provide default integration functions for common frameworks such as
@@ -64,9 +64,11 @@
 //! input_map.update(); // Read queued events and update the input state.
 //! input_map.is_pressed("a"); // Query the input state.
 //! ```
-//!
 
-use std::collections::HashMap;
+mod input_map;
+
+pub use input_map::*;
+
 use std::sync::{Arc, Mutex};
 
 use event_feed::*;
@@ -86,28 +88,6 @@ pub enum InputEvent {
     KeyDown(InputName),
     KeyUp(InputName),
     // ext. ext.
-}
-
-/// Represents the current state of an input for the [InputMap].
-#[derive(Debug, Clone, Copy)]
-pub enum InputState {
-    Key(ButtonState),
-}
-
-/// Provides state for a button, indicating if it is currently up or down.
-#[derive(Debug, Clone, Copy)]
-pub enum ButtonState {
-    Up,
-    Down,
-}
-
-impl ButtonState {
-    pub fn is_pressed(&self) -> bool {
-        match self {
-            ButtonState::Up => false,
-            ButtonState::Down => true,
-        }
-    }
 }
 
 /// Provides a generic input event queue.
@@ -145,51 +125,6 @@ impl Default for InputHelper {
     }
 }
 
-/// Provide a map for querying the current input state.
-pub struct InputMap {
-    map: HashMap<InputName, InputState>,
-    input_reader: Arc<Reader<InputEvent>>,
-}
-
-impl InputMap {
-    pub fn new(input_helper: &InputHelper) -> Self {
-        Self {
-            map: HashMap::new(),
-            input_reader: input_helper.reader(),
-        }
-    }
-
-    /// Process all queued [InputEvent]s and update the map.
-    ///
-    /// This method should be ran before inspecting the input state.  If you're
-    /// writing a framework using Input Helper, then you should probably run this before
-    /// running the user's `update` code.
-    pub fn update(&mut self) {
-        for event in self.input_reader.read() {
-            match event {
-                InputEvent::KeyDown(key) => {
-                    self.map.insert(key, InputState::Key(ButtonState::Down));
-                }
-                InputEvent::KeyUp(key) => {
-                    self.map.insert(key, InputState::Key(ButtonState::Up));
-                }
-            }
-        }
-    }
-
-    /// Query the state of a button, and return `true` if the button is pressed.
-    ///
-    /// If the requested input is not a button, then `false` will be returned.
-    pub fn is_pressed(&self, input: InputName) -> bool {
-        match self.map.get(input) {
-            Some(input) => match input {
-                InputState::Key(button) => button.is_pressed(),
-            },
-            None => false,
-        }
-    }
-}
-
 #[cfg(test)]
 mod input_helper_tests {
     use super::*;
@@ -203,19 +138,5 @@ mod input_helper_tests {
         input_helper.send(InputEvent::KeyDown("a"));
 
         assert_eq!(input_reader.read().count(), 2);
-    }
-
-    #[test]
-    fn should_update_input_map() {
-        let input_helper = InputHelper::new();
-        let mut input_map = InputMap::new(&input_helper);
-
-        input_helper.send(InputEvent::KeyDown("a"));
-        input_map.update();
-        assert!(input_map.is_pressed("a"));
-
-        input_helper.send(InputEvent::KeyUp("a"));
-        input_map.update();
-        assert!(!input_map.is_pressed("a"));
     }
 }
