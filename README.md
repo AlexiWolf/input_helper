@@ -4,7 +4,7 @@ Generic types and tools for unifying input libraries.
 
 The main job of Input Helper is to provide a single, unified way to process input from any input framework.
 
-# The Problem
+### The Problem
 
 Most libraries that take user input do so in a library-specific way.  In order to use the library, you must write 
 library-specific code.
@@ -14,7 +14,7 @@ your input code. This can either couple your project to specific framework(s), o
 code.  In the case of using multiple input libraries, such as pairing Winit and Gilrs you must handle each framework 
 separately.
 
-# The Solution
+### The Solution
 
 Library-specific input events can be converted to `InputEvents`, and sent through Input Helper using 
 `InputHelper::send()`.  Then your application code can be written against Input Helper.  If you ever need to switch 
