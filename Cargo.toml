@@ -8,7 +8,6 @@ license = "MIT OR Apache-2.0"
 repository = "https://github.com/AlexiWolf/input_helper"
 homepage = "https://github.com/AlexiWolf/input_helper"
 
-
 [features]
 default = []
 winit = ["dep:winit"]
@@ -18,6 +17,7 @@ gilrs = ["dep:gilrs"]
 [dependencies]
 log = "0.4"
 event_feed = "0.1"
+keyboard-types = "0.6"
 
 winit = {version = "0.26", optional = true}
 sdl2 = {version = "0.35", optional = true}
