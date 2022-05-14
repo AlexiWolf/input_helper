@@ -1,4 +1,9 @@
 /// Symbolic name for a keyboard key.
+///
+/// This is borrowed from [Winit](https://github.com/rust-windowing/winit)'s source 
+/// code. See the 
+/// [licenses file](https://github.com/AlexiWolf/input_helper/tree/main/licenses#winit)
+/// for more details.
 #[derive(Debug, Hash, Ord, PartialOrd, PartialEq, Eq, Clone, Copy)]
 #[repr(u32)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
