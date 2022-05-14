@@ -32,8 +32,8 @@
 //!
 //! let input_helper = InputHelper::new();
 //!
-//! input_helper.send(InputEvent::KeyDown("a"));
-//! input_helper.send(InputEvent::KeyUp("a"));
+//! input_helper.send(InputEvent::Key(Key::A, ButtonState::Down));
+//! input_helper.send(InputEvent::Key(Key::A, ButtonState::Up));
 //! ```
 //!
 //! Read events using an [InputReader].  You can request a new [InputReader] using
@@ -62,7 +62,7 @@
 //! let mut input_map = InputMap::new(&input_helper);
 //!
 //! input_map.update(); // Read queued events and update the input state.
-//! input_map.is_pressed("a"); // Query the input state.
+//! input_map.is_pressed(Key::A); // Query the input state.
 //! ```
 
 mod input_map;
