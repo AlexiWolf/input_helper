@@ -61,8 +61,8 @@ impl InputMap {
     /// Query the state of a button, and return `true` if the button is pressed.
     ///
     /// If the requested input is not a button, then `false` will be returned.
-    pub fn is_pressed(&self, input: Input) -> bool {
-        match self.map.get(&input) {
+    pub fn is_pressed<I: Into<Input>>(&self, input: I) -> bool {
+        match self.map.get(&input.into()) {
             Some(input) => match input {
                 InputState::Key(button) => button.is_pressed(),
             },
