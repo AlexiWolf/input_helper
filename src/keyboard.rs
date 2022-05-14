@@ -2,7 +2,7 @@
 #[derive(Debug, Hash, Ord, PartialOrd, PartialEq, Eq, Clone, Copy)]
 #[repr(u32)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-pub enum VirtualKeyCode {
+pub enum Key {
     /// The '1' key over the letters.
     Key1,
     /// The '2' key over the letters.
