@@ -24,9 +24,14 @@ impl ButtonState {
     }
 }
 
+#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
+pub enum Input {
+    Key(Key),
+}
+
 /// Provide a map for querying the current input state.
 pub struct InputMap {
-    map: HashMap<InputName, InputState>,
+    map: HashMap<Input, InputState>,
     input_reader: Arc<Reader<InputEvent>>,
 }
 
@@ -46,11 +51,8 @@ impl InputMap {
     pub fn update(&mut self) {
         for event in self.input_reader.read() {
             match event {
-                InputEvent::KeyDown(key) => {
-                    self.map.insert(key, InputState::Key(ButtonState::Down));
-                }
-                InputEvent::KeyUp(key) => {
-                    self.map.insert(key, InputState::Key(ButtonState::Up));
+                InputEvent::Key(key, state) => {
+                    self.map.insert(Input::Key(key), InputState::Key(state));
                 }
             }
         }
@@ -59,8 +61,8 @@ impl InputMap {
     /// Query the state of a button, and return `true` if the button is pressed.
     ///
     /// If the requested input is not a button, then `false` will be returned.
-    pub fn is_pressed(&self, input: InputName) -> bool {
-        match self.map.get(input) {
+    pub fn is_pressed(&self, input: Input) -> bool {
+        match self.map.get(&input) {
             Some(input) => match input {
                 InputState::Key(button) => button.is_pressed(),
             },
