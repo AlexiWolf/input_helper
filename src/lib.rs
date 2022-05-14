@@ -66,8 +66,10 @@
 //! ```
 
 mod input_map;
+mod keyboard;
 
 pub use input_map::*;
+pub use keyboard::*;
 
 use std::sync::{Arc, Mutex};
 
