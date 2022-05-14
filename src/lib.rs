@@ -87,8 +87,7 @@ pub type InputName = &'static str;
 /// Provides a set of generic input events.
 #[derive(Debug, Clone, Copy)]
 pub enum InputEvent {
-    KeyDown(InputName),
-    KeyUp(InputName),
+    Key(Key, ButtonState),
     // ext. ext.
 }
 
@@ -136,8 +135,8 @@ mod input_helper_tests {
         let input_helper = InputHelper::new();
         let input_reader = input_helper.reader();
 
-        input_helper.send(InputEvent::KeyDown("a"));
-        input_helper.send(InputEvent::KeyDown("a"));
+        input_helper.send(InputEvent::Key(Key::A, ButtonState::Down));
+        input_helper.send(InputEvent::Key(Key::A, ButtonState::Up));
 
         assert_eq!(input_reader.read().count(), 2);
     }
