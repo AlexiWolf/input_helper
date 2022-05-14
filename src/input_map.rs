@@ -78,12 +78,12 @@ mod input_map_tests {
         let input_helper = InputHelper::new();
         let mut input_map = InputMap::new(&input_helper);
 
-        input_helper.send(InputEvent::KeyDown("a"));
+        input_helper.send(InputEvent::Key(Key::A, ButtonState::Down));
         input_map.update();
-        assert!(input_map.is_pressed("a"));
+        assert!(input_map.is_pressed(Key::A));
 
-        input_helper.send(InputEvent::KeyUp("a"));
+        input_helper.send(InputEvent::Key(Key::A, ButtonState::Up));
         input_map.update();
-        assert!(!input_map.is_pressed("a"));
+        assert!(!input_map.is_pressed(Key::A));
     }
 }
