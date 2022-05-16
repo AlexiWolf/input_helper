@@ -6,6 +6,12 @@ pub enum InputEvent {
     Key(Key, ButtonState),
 }
 
+impl InputEvent {
+    pub fn key_up(key: Key) -> Self {
+        Self::Key(key, ButtonState::Up)
+    }
+}
+
 #[cfg(test)]
 mod test_input_event {
     use super::*;
