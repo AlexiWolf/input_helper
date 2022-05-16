@@ -10,6 +10,10 @@ impl InputEvent {
     pub fn key_up(key: Key) -> Self {
         Self::Key(key, ButtonState::Up)
     }
+
+    pub fn key_down(key: Key) -> Self {
+        Self::Key(key, ButtonState::Down)
+    }
 }
 
 #[cfg(test)]
