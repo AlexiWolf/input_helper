@@ -2,8 +2,8 @@ use crate::Input;
 
 /// Symbolic name for a keyboard key.
 ///
-/// This is borrowed from [Winit](https://github.com/rust-windowing/winit)'s source 
-/// code. See the 
+/// This is borrowed from [Winit](https://github.com/rust-windowing/winit)'s source
+/// code. See the
 /// [licenses file](https://github.com/AlexiWolf/input_helper/tree/main/licenses#winit)
 /// for more details.
 #[derive(Debug, Hash, Ord, PartialOrd, PartialEq, Eq, Clone, Copy)]
@@ -210,6 +210,6 @@ pub enum Key {
 
 impl Into<Input> for Key {
     fn into(self) -> Input {
-        Input::Key(self) 
+        Input::Key(self)
     }
 }

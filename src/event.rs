@@ -1,4 +1,4 @@
-use crate::*; 
+use crate::*;
 
 /// Provides a set of generic input events.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -22,11 +22,17 @@ mod test_input_event {
 
     #[test]
     fn should_have_key_up_method() {
-        assert_eq!(InputEvent::Key(Key::A, ButtonState::Up), InputEvent::key_up(Key::A));
+        assert_eq!(
+            InputEvent::Key(Key::A, ButtonState::Up),
+            InputEvent::key_up(Key::A)
+        );
     }
 
     #[test]
     fn should_have_key_down_method() {
-        assert_eq!(InputEvent::Key(Key::A, ButtonState::Down), InputEvent::key_down(Key::A));
+        assert_eq!(
+            InputEvent::Key(Key::A, ButtonState::Down),
+            InputEvent::key_down(Key::A)
+        );
     }
 }
