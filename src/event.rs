@@ -20,4 +20,9 @@ mod test_input_event {
     fn should_have_key_up_method() {
         assert_eq!(InputEvent::Key(Key::A, ButtonState::Up), InputEvent::key_up(Key::A));
     }
+
+    #[test]
+    fn should_have_key_down_method() {
+        assert_eq!(InputEvent::Key(Key::A, ButtonState::Down), InputEvent::key_down(Key::A));
+    }
 }
