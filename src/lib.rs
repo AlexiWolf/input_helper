@@ -65,9 +65,11 @@
 //! input_map.is_pressed(Key::A); // Query the input state.
 //! ```
 
+mod event;
 mod input_map;
 mod keyboard;
 
+pub use event::*;
 pub use input_map::*;
 pub use keyboard::*;
 
@@ -80,15 +82,6 @@ pub type InputFeed = Feed<InputEvent>;
 
 /// Defines a [Reader] for [InputEvent]s.
 pub type InputReader = Reader<InputEvent>;
-
-/// Defines the type used for naming inputs.
-pub type InputName = &'static str;
-
-/// Provides a set of generic input events.
-#[derive(Debug, Clone, Copy)]
-pub enum InputEvent {
-    Key(Key, ButtonState),
-}
 
 /// Provides a generic input event queue.
 pub struct InputHelper {
