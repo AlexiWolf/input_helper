@@ -88,7 +88,6 @@ pub type InputName = &'static str;
 #[derive(Debug, Clone, Copy)]
 pub enum InputEvent {
     Key(Key, ButtonState),
-    // ext. ext.
 }
 
 /// Provides a generic input event queue.
