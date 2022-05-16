@@ -9,7 +9,7 @@ pub enum InputState {
 }
 
 /// Provides state for a button, indicating if it is currently up or down.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ButtonState {
     Up,
     Down,
