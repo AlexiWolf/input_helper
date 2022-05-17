@@ -47,7 +47,9 @@
 //! let input_reader = input_helper.reader();
 //!
 //! for input in input_reader.read() {
-//!     // Do something cool.
+//!     match input {
+//!         _ => (),
+//!     }
 //! }
 //! ```
 
