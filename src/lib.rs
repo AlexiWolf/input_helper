@@ -32,8 +32,8 @@
 //!
 //! let input_helper = InputHelper::new();
 //!
-//! input_helper.send(InputEvent::Key(Key::A, ButtonState::Down));
-//! input_helper.send(InputEvent::Key(Key::A, ButtonState::Up));
+//! input_helper.send(InputEvent::key_up(Key::A));
+//! input_helper.send(InputEvent::key_down(Key::A));
 //! ```
 //!
 //! Read events using an [InputReader].  You can request a new [InputReader] using
