@@ -1,4 +1,6 @@
+/// Represents a button which can be pressed, or not pressed.
 pub trait Button {
+    /// Returns true if the button is pressed.
     fn is_pressed(&self) -> bool;
 }
 
