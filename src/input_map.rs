@@ -8,15 +8,6 @@ pub enum InputState {
     Key(ButtonState),
 }
 
-impl ButtonState {
-    pub fn is_pressed(&self) -> bool {
-        match self {
-            ButtonState::Up => false,
-            ButtonState::Down => true,
-        }
-    }
-}
-
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 pub enum Input {
     Key(Key),
