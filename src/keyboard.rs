@@ -1,5 +1,3 @@
-use crate::Input;
-
 /// Symbolic name for a keyboard key.
 ///
 /// This is borrowed from [Winit](https://github.com/rust-windowing/winit)'s source
@@ -206,10 +204,4 @@ pub enum Key {
     Copy,
     Paste,
     Cut,
-}
-
-impl Into<Input> for Key {
-    fn into(self) -> Input {
-        Input::Key(self)
-    }
 }

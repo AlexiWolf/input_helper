@@ -50,29 +50,13 @@
 //!     // Do something cool.
 //! }
 //! ```
-//!
-//! Query input state using an [InputMap].  An [InputMap] is created from an existing
-//! [InputHelper] instance.
-//!
-//! ```
-//! # use input_helper::*;
-//! #
-//! # let input_helper = InputHelper::new();
-//! #
-//! let mut input_map = InputMap::new(&input_helper);
-//!
-//! input_map.update(); // Read queued events and update the input state.
-//! input_map.is_pressed(Key::A); // Query the input state.
-//! ```
 
 mod button;
 mod event;
-mod input_map;
 mod keyboard;
 
 pub use button::*;
 pub use event::*;
-pub use input_map::*;
 pub use keyboard::*;
 
 use std::sync::{Arc, Mutex};
