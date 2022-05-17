@@ -65,10 +65,12 @@
 //! input_map.is_pressed(Key::A); // Query the input state.
 //! ```
 
+mod button;
 mod event;
 mod input_map;
 mod keyboard;
 
+pub use button::*;
 pub use event::*;
 pub use input_map::*;
 pub use keyboard::*;
